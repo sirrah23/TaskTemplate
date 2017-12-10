@@ -28,9 +28,9 @@ Make sure that you have [Golang](https://golang.org) and
 
     `git clone https://github.com/sirrah23/TaskTemplate.git`
 
-2. Run `go install tasktemplate`
+2. Run `go install Tasktemplate/tasktemplate` at the root of your $GOPATH
 
-3. Retrieve the binary from your bin directory
+3. Retrieve the binary from the bin directory
 
 # How to use it
 
