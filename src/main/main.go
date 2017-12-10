@@ -18,12 +18,26 @@ func main() {
 	projectPtr := flag.String("project", "", "Project assignment for the newly generated tasks")
 	flag.Parse()
 
+	// Do some basic validations
 	if *endPtr < 0 {
 		fmt.Println(errors.New("No valid end provided"))
 		return
 	}
 
+	if *startPtr > *endPtr {
+		fmt.Println(errors.New("Start must be less than end"))
+		return
+	}
+
+	//Generate all the tasks to insert into TaskWarrior
 	taskArray := tasktemplate.BuildTaskCommands(*templatePtr, *projectPtr, *startPtr, *endPtr)
+
+	if len(taskArray) == 0 {
+		fmt.Println(errors.New("Nothing to generate"))
+		return
+	}
+
+	//Run the task command for each command that was generated
 	for _, task := range taskArray {
 		taskCommand := strings.SplitN(task, " ", 2)
 		cmd := exec.Command(taskCommand[0], taskCommand[1])
