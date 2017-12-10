@@ -1,6 +1,6 @@
 # What is this?
 
-There are times where I want to insert a series of tasks into
+There are times when I want to insert a series of tasks into
 [Taskwarror](https://taskwarrior.org) that look very similar.
 
 For example:
@@ -17,9 +17,22 @@ This is the problem that task template solves.
 
 # How to install
 
-TODO
+## Prerequisites
 
-# How to use
+Make sure that you have [Golang](https://golang.org) and
+[Taskwarror](https://taskwarrior.org) installed.
+
+## Installation steps
+
+1. Clone the repository to your $GOPATH
+
+    git clone https://github.com/sirrah23/TaskTemplate.git
+
+2. Run `go install tasktemplate`
+
+3. Retrieve the binary from your bin directory
+
+# How to use it
 
 After you have installed TaskTemplate you can use it by running,
 
