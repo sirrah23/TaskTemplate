@@ -26,7 +26,7 @@ Make sure that you have [Golang](https://golang.org) and
 
 1. Clone the repository to your $GOPATH
 
-    git clone https://github.com/sirrah23/TaskTemplate.git
+    `git clone https://github.com/sirrah23/TaskTemplate.git`
 
 2. Run `go install tasktemplate`
 
