@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"log"
 	"os/exec"
-	"strings"
 )
 
 func main() {
@@ -39,12 +38,12 @@ func main() {
 
 	//Run the task command for each command that was generated
 	for _, task := range taskArray {
-		taskCommand := strings.SplitN(task, " ", 2)
-		cmd := exec.Command(taskCommand[0], taskCommand[1])
+		taskCommand := task.GenerateTaskAddCMD()
+		cmd := exec.Command(taskCommand[0], taskCommand[1:]...)
 		_, err := cmd.CombinedOutput()
 		if err != nil {
 			log.Fatalf("%s\n", err)
 		}
 	}
-	fmt.Println("%d tasks added successfully", len(taskArray))
+	fmt.Println(fmt.Sprintf("%d tasks added successfully", len(taskArray)))
 }

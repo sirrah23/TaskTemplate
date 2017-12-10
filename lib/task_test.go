@@ -4,10 +4,10 @@ import "testing"
 
 func TestTaskNoProject(t *testing.T) {
 
-	expected := []string{
-		"task add \"My sample 1\" project:\"\"",
-		"task add \"My sample 2\" project:\"\"",
-		"task add \"My sample 3\" project:\"\"",
+	expected := []Task{
+		Task{"My sample 1", ""},
+		Task{"My sample 2", ""},
+		Task{"My sample 3", ""},
 	}
 
 	actuals := BuildTaskCommands("My sample #", "", 1, 3)
@@ -21,10 +21,10 @@ func TestTaskNoProject(t *testing.T) {
 
 func TestTaskWithProject(t *testing.T) {
 
-	expected := []string{
-		"task add \"My sample 1\" project:\"The Project\"",
-		"task add \"My sample 2\" project:\"The Project\"",
-		"task add \"My sample 3\" project:\"The Project\"",
+	expected := []Task{
+		Task{"My sample 1", "The Project"},
+		Task{"My sample 2", "The Project"},
+		Task{"My sample 3", "The Project"},
 	}
 
 	actuals := BuildTaskCommands("My sample #", "The Project", 1, 3)
@@ -38,12 +38,12 @@ func TestTaskWithProject(t *testing.T) {
 
 func TestTaskWeirdRange(t *testing.T) {
 
-	expected := []string{
-		"task add \"My sample 32\" project:\"The Project\"",
-		"task add \"My sample 33\" project:\"The Project\"",
-		"task add \"My sample 34\" project:\"The Project\"",
-		"task add \"My sample 35\" project:\"The Project\"",
-		"task add \"My sample 36\" project:\"The Project\"",
+	expected := []Task{
+		Task{"My sample 32", "The Project"},
+		Task{"My sample 33", "The Project"},
+		Task{"My sample 34", "The Project"},
+		Task{"My sample 35", "The Project"},
+		Task{"My sample 36", "The Project"},
 	}
 
 	actuals := BuildTaskCommands("My sample #", "The Project", 32, 36)
@@ -61,5 +61,16 @@ func TestTaskBadRange(t *testing.T) {
 
 	if len(actuals) != 0 {
 		t.Errorf("%s is not empty", actuals)
+	}
+}
+
+func TestCommandArrayGen(t *testing.T) {
+	expected := []string{"task", "add", "My sample 2", "project:\"The Project\""}
+	actual := BuildTaskCommands("My sample #", "The Project", 2, 2)[0].GenerateTaskAddCMD()
+
+	for i, item := range actual {
+		if item != expected[i] {
+			t.Errorf("%s is not %s", item, expected[i])
+		}
 	}
 }
