@@ -1,13 +1,13 @@
 package main
 
 import (
+	"TaskTemplate/lib"
 	"errors"
 	"flag"
 	"fmt"
 	"log"
 	"os/exec"
 	"strings"
-	"tasktemplate"
 )
 
 func main() {
